@@ -1,5 +1,5 @@
 #!/bin/bash
-bash /data/script/app-env.sh
+. /data/script/app-env.sh
 
 SERVICE_PROCESS="library-monolithic"
 PS_OUT=""
@@ -31,7 +31,8 @@ kill_process(){
 process_check
 kill_process
 
-#nohup java -jar ${JAVA_OPT} /data/app.jar 1>/dev/null 2>&1 &
-java -jar ${JAVA_OPT} /data/library-monolithic.jar
+echo "JAVA_OPT=${JAVA_OPT}"
+nohup java -jar ${JAVA_OPT} /data/library-monolithic.jar 1>/dev/null 2>&1 &
+#java -jar ${JAVA_OPT} /data/library-monolithic.jar
 
 process_check
